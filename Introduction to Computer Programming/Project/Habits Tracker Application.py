@@ -1,0 +1,229 @@
+import tkinter as tk
+from tkinter import simpledialog, messagebox
+import pickle
+import os
+
+class ProfileSelectionPage:
+    def __init__(self, root):
+        self.root = root
+        self.profiles = []
+        self.setup_profile_selection_page()
+        self.load_profiles()
+        self.create_profile_buttons()
+
+    def setup_profile_selection_page(self):
+        self.root.title("Profile Selection")
+        self.root.geometry("400x700")
+        self.root.resizable(False, False)
+
+        self.select_profile_label = tk.Label(
+            self.root,
+            text="Select a Profile",
+            font=("Arial", 20, "bold"),
+            background="white",
+            width=30,
+            height=2,
+        )
+        self.select_profile_label.place(relx=0.5, rely=0.04, anchor=tk.CENTER)
+
+        self.btn_new = tk.Button(self.root, text="+", width=4, command=self.new_profile)
+        self.btn_new.place(x=320, y=660)
+
+    def load_profiles(self):
+        try:
+            with open("profiles.pkl", "rb") as file:
+                self.profiles = pickle.load(file)
+        except FileNotFoundError:
+            self.profiles = []
+
+    def save_profiles(self):
+        with open("profiles.pkl", "wb") as file:
+            pickle.dump(self.profiles, file)
+
+    def new_profile(self):
+        if len(self.profiles) >= 10:
+            messagebox.showinfo("Error", "You can only have up to 10 profiles.")
+            return
+
+        profile_name = simpledialog.askstring("New Profile", "Enter Profile Name:")
+        if not profile_name:
+            profile_name = f"Profile {len(self.profiles) + 1}"
+
+        self.profiles.append(profile_name)
+        self.save_profiles()
+        self.refresh_buttons()
+
+    def create_profile_buttons(self):
+        profile_frame = tk.Frame(self.root)
+        profile_frame.pack(pady=20)
+
+        for i, profile_name in enumerate(self.profiles):
+            self.create_profile_button(profile_frame, i, profile_name)
+
+        profile_frame.place(relx=0.04, rely=0.1)
+
+    def create_profile_button(self, frame, index, profile_name):
+        profile_row = tk.Frame(frame)
+        profile_row.pack()
+
+        profile_btn = tk.Button(
+            profile_row,
+            text=f"  {profile_name}",
+            width=38,
+            height=2,
+            font=("Arial", 12),
+            command=lambda i=index: self.show_profile_page(self.profiles[i]),
+        )
+        profile_btn.pack(side=tk.LEFT)
+
+        delete_btn = tk.Button(
+            profile_row,
+            text="🗑️",
+            width=5,
+            height=2,
+            font=("Arial", 12),
+            command=lambda i=index: self.delete_profile(i),
+        )
+        delete_btn.pack(side=tk.LEFT)
+
+    def refresh_buttons(self):
+        for widget in self.root.winfo_children():
+            widget.destroy()
+        self.setup_profile_selection_page()
+        self.create_profile_buttons()
+
+    def delete_profile(self, index):
+        if 0 <= index < len(self.profiles):
+            profile_name = self.profiles[index]
+            habits_file = f"{profile_name}_habits.pkl"
+
+            if os.path.exists(habits_file):
+                os.remove(habits_file)
+
+            del self.profiles[index]
+            self.save_profiles()
+            self.refresh_buttons()
+
+    def show_profile_page(self, profile_name):
+        profile_page_root = tk.Toplevel(self.root)
+        self.root.withdraw()
+        profile_page = ProfilePage(profile_page_root, profile_name)
+        profile_page_root.wait_window()
+        self.root.deiconify()
+
+class ProfilePage:
+    def __init__(self, root, profile_name):
+        self.root = root
+        self.profile_name = profile_name
+        self.habits = self.load_habits()
+        self.setup_profile_page()
+
+    def setup_profile_page(self):
+        self.root.title(f"Profile: {self.profile_name}")
+        self.root.geometry("700x400")
+        self.root.resizable(False, False)
+
+        self.label = tk.Label(
+            self.root,
+            text=f"Profile: {self.profile_name}",
+            font=("Arial", 20, "bold"),
+            background="white",
+            width=55,
+            height=2,
+        )
+        self.label.place(relx=0.5, rely=0.07, anchor=tk.CENTER)
+
+        self.btn_return = tk.Button(
+            self.root, text="⏎", width=5, command=self.return_to_profile_selection
+        )
+        self.btn_return.place(x=600, y=350)
+
+        self.btn_add_habits = tk.Button(
+            self.root, text="Add Habits", width=15, command=self.add_habits
+        )
+        self.btn_add_habits.place(relx=0.5, rely=0.3, anchor=tk.CENTER)
+
+        self.display_habits()
+
+    def return_to_profile_selection(self):
+        self.save_habits()
+        self.root.destroy()
+
+    def add_habits(self):
+        add_habits_root = tk.Toplevel(self.root)
+        add_habits = AddHabitsPage(add_habits_root, self.profile_name, self)
+        add_habits_root.wait_window()
+
+    def display_habits(self):
+        habits_label = tk.Label(self.root, text="Habits:", font=("Arial", 14, "bold"))
+        habits_label.place(x=50, y=100)
+
+        for i, habit in enumerate(self.habits):
+            habit_label = tk.Label(
+                self.root, text=f"{i + 1}. {habit}", font=("Arial", 12)
+            )
+            habit_label.place(x=100, y=140 + i * 30)
+
+    def load_habits(self):
+        try:
+            with open(f"{self.profile_name}_habits.pkl", "rb") as file:
+                return pickle.load(file)
+        except FileNotFoundError:
+            return []
+
+    def save_habits(self):
+        with open(f"{self.profile_name}_habits.pkl", "wb") as file:
+            pickle.dump(self.habits, file)
+
+class AddHabitsPage:
+    def __init__(self, root, profile_name, profile_page):
+        self.root = root
+        self.profile_name = profile_name
+        self.profile_page = profile_page
+        self.setup_add_habits_page()
+
+    def setup_add_habits_page(self):
+        self.root.title(f"Add Habits")
+        self.root.geometry("700x400")
+        self.root.resizable(False, False)
+
+        self.label = tk.Label(
+            self.root,
+            text=f"Add Habits",
+            font=("Arial", 20, "bold"),
+            background="white",
+            width=55,
+            height=2,
+        )
+        self.label.place(relx=0.5, rely=0.07, anchor=tk.CENTER)
+
+        self.btn_return = tk.Button(
+            self.root, text="⏎", width=5, command=self.return_to_profile_page
+        )
+        self.btn_return.place(x=600, y=350)
+
+        self.habit_entry = tk.Entry(self.root, width=50)
+        self.habit_entry.place(relx=0.5, rely=0.3, anchor=tk.CENTER)
+
+        self.btn_add_habit = tk.Button(
+            self.root, text="Add Habit", width=15, command=self.add_habit
+        )
+        self.btn_add_habit.place(relx=0.5, rely=0.4, anchor=tk.CENTER)
+
+    def return_to_profile_page(self):
+        self.root.destroy()
+        self.profile_page.display_habits()
+
+    def add_habit(self):
+        habit_text = self.habit_entry.get()
+        if habit_text:
+            self.habit_entry.delete(0, "end")
+            self.profile_page.habits.append(habit_text)
+            self.profile_page.save_habits()
+            self.profile_page.display_habits()
+            self.root.destroy()
+
+if __name__ == "__main__":
+    root = tk.Tk()
+    profile_selection = ProfileSelectionPage(root)
+    root.mainloop()
