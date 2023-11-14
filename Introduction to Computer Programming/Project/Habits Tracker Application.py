@@ -1,7 +1,25 @@
 import tkinter as tk
 from tkinter import simpledialog, messagebox
 import pickle
+from tkinter import IntVar, ttk
 import os
+
+
+class BasePage:
+    def __init__(self, root, title, geometry):
+        self.root = root
+        self.title = title
+        self.geometry = geometry
+        self.setup_base_page()
+
+    def setup_base_page(self):
+        self.root.title(self.title)
+        self.root.geometry(self.geometry)
+        self.root.resizable(False, False)
+
+    def destroy(self):
+        self.root.destroy()
+
 
 class ProfileSelectionPage:
     def __init__(self, root):
@@ -111,6 +129,7 @@ class ProfileSelectionPage:
         profile_page_root.wait_window()
         self.root.deiconify()
 
+
 class ProfilePage:
     def __init__(self, root, profile_name):
         self.root = root
@@ -183,18 +202,15 @@ class ProfilePage:
         with open(f"{self.profile_name}_habits.pkl", "wb") as file:
             pickle.dump(self.habits, file)
 
-class AddHabitsPage:
+
+class AddHabitsPage(BasePage):
     def __init__(self, root, profile_name, profile_page):
-        self.root = root
+        super().__init__(root, "Add Habits", "700x400")
         self.profile_name = profile_name
         self.profile_page = profile_page
         self.setup_add_habits_page()
 
     def setup_add_habits_page(self):
-        self.root.title(f"Add Habits")
-        self.root.geometry("700x400")
-        self.root.resizable(False, False)
-
         self.label = tk.Label(
             self.root,
             text=f"Add Habits",
@@ -213,23 +229,78 @@ class AddHabitsPage:
         self.habit_entry = tk.Entry(self.root, width=50)
         self.habit_entry.place(relx=0.5, rely=0.3, anchor=tk.CENTER)
 
+        self.habit_type = tk.StringVar()
+        self.habit_type.set("wanted") 
+        wanted_checkbox = tk.Radiobutton(
+            self.root,
+            text="Wanted Habit",
+            variable=self.habit_type,
+            value="wanted",
+        )
+        wanted_checkbox.place(relx=0.3, rely=0.4, anchor=tk.CENTER)
+
+        unwanted_checkbox = tk.Radiobutton(
+            self.root,
+            text="Unwanted Habit",
+            variable=self.habit_type,
+            value="unwanted",
+        )
+        unwanted_checkbox.place(relx=0.7, rely=0.4, anchor=tk.CENTER)
+
+        self.timer_var = IntVar(value=0)
+        timer_checkbox = tk.Checkbutton(
+            self.root,
+            text="Enable Timer",
+            variable=self.timer_var,
+            onvalue=1,
+            offvalue=0,
+            command=self.toggle_timer_entry,
+        )
+        timer_checkbox.place(relx=0.5, rely=0.5, anchor=tk.CENTER)
+
+        self.timer_entry = ttk.Entry(self.root, state=tk.DISABLED, width=10)
+        self.timer_entry.place(relx=0.5, rely=0.55, anchor=tk.CENTER)
+
         self.btn_add_habit = tk.Button(
             self.root, text="Add Habit", width=15, command=self.add_habit
         )
-        self.btn_add_habit.place(relx=0.5, rely=0.4, anchor=tk.CENTER)
+        self.btn_add_habit.place(relx=0.5, rely=0.6, anchor=tk.CENTER)
+
+    def toggle_timer_entry(self):
+        if self.timer_var.get() == 1:
+            self.timer_entry.config(state=tk.NORMAL)
+        else:
+            self.timer_entry.delete(0, tk.END)
+            self.timer_entry.config(state=tk.DISABLED)
 
     def return_to_profile_page(self):
-        self.root.destroy()
+        self.destroy()
         self.profile_page.display_habits()
 
     def add_habit(self):
         habit_text = self.habit_entry.get()
-        if habit_text:
+        habit_type = self.habit_type.get()
+        enable_timer = self.timer_var.get()
+        timer_value = self.timer_entry.get()
+
+        if habit_text and habit_type:
             self.habit_entry.delete(0, "end")
-            self.profile_page.habits.append(habit_text)
+
+            habit_text_to_save = habit_text
+            if enable_timer:
+                if timer_value.isdigit() and int(timer_value) > 0:
+                    habit_text_to_save += f" (Timer Enabled: {timer_value} min)"
+                else:
+                    messagebox.showwarning("Warning", "Please enter a valid timer value.")
+                    return
+
+            self.profile_page.habits.append(habit_text_to_save)
             self.profile_page.save_habits()
             self.profile_page.display_habits()
-            self.root.destroy()
+            self.destroy()
+        else:
+            messagebox.showwarning("Warning", "Please enter a habit and select a type.")
+
 
 if __name__ == "__main__":
     root = tk.Tk()
