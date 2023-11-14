@@ -160,7 +160,7 @@ class ProfilePage:
         self.btn_add_habits = tk.Button(
             self.root, text="Add Habits", width=15, command=self.add_habits
         )
-        self.btn_add_habits.place(relx=0.5, rely=0.3, anchor=tk.CENTER)
+        self.btn_add_habits.place(relx=0.5, y=350, anchor=tk.CENTER)
 
         # Display habits using buttons
         self.display_habits()
@@ -175,10 +175,24 @@ class ProfilePage:
         add_habits_root.wait_window()
 
     def display_habits(self):
-        habits_label = tk.Label(self.root, text="Habits:", font=("Arial", 14, "bold"))
-        habits_label.place(x=50, y=100)
+        wanted_label = tk.Label(
+            self.root, text="Wanted Habits:", font=("Arial", 14, "bold")
+        )
+        wanted_label.place(x=50, y=100)
 
-        for i, habit in enumerate(self.habits):
+        unwanted_label = tk.Label(
+            self.root, text="Unwanted Habits:", font=("Arial", 14, "bold")
+        )
+        unwanted_label.place(relx=0.6, y=100)
+
+        wanted_habits = [
+            habit for habit in self.habits if not habit.endswith("(Unwanted)")
+        ]
+        unwanted_habits = [
+            habit[:-11] for habit in self.habits if habit.endswith("(Unwanted)")
+        ]
+
+        for i, habit in enumerate(wanted_habits):
             habit_btn = tk.Button(
                 self.root,
                 text=f"{i + 1}. {habit}",
@@ -186,6 +200,17 @@ class ProfilePage:
                 command=lambda h=habit: self.handle_habit_button(h),
             )
             habit_btn.place(x=100, y=140 + i * 30)
+
+        for i, habit in enumerate(unwanted_habits):
+            habit_btn = tk.Button(
+                self.root,
+                text=f"{i + 1}. {habit}",
+                font=("Arial", 12),
+                command=lambda h=habit: self.handle_habit_button(h),
+            )
+            habit_btn.place(
+                relx=0.55, x=100, y=140 + i * 30
+            )  # Adjust the x parameter for the right side
 
     def handle_habit_button(self, habit):
         # You can implement any behavior you want when a habit button is clicked
@@ -230,7 +255,7 @@ class AddHabitsPage(BasePage):
         self.habit_entry.place(relx=0.5, rely=0.3, anchor=tk.CENTER)
 
         self.habit_type = tk.StringVar()
-        self.habit_type.set("wanted") 
+        self.habit_type.set("wanted")
         wanted_checkbox = tk.Radiobutton(
             self.root,
             text="Wanted Habit",
@@ -287,11 +312,16 @@ class AddHabitsPage(BasePage):
             self.habit_entry.delete(0, "end")
 
             habit_text_to_save = habit_text
+            if habit_type == "unwanted":
+                habit_text_to_save += " (Unwanted)"
+
             if enable_timer:
                 if timer_value.isdigit() and int(timer_value) > 0:
                     habit_text_to_save += f" (Timer Enabled: {timer_value} min)"
                 else:
-                    messagebox.showwarning("Warning", "Please enter a valid timer value.")
+                    messagebox.showwarning(
+                        "Warning", "Please enter a valid timer value."
+                    )
                     return
 
             self.profile_page.habits.append(habit_text_to_save)
