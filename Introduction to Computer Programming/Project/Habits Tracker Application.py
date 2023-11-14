@@ -1,7 +1,6 @@
 import tkinter as tk
-from tkinter import simpledialog, messagebox
+from tkinter import simpledialog, messagebox, IntVar, ttk
 import pickle
-from tkinter import IntVar, ttk
 import os
 
 
@@ -138,7 +137,7 @@ class ProfilePage:
         self.setup_profile_page()
 
     def setup_profile_page(self):
-        self.root.title(f"Profile: {self.profile_name}")
+        self.root.title(f"{self.profile_name}")
         self.root.geometry("700x400")
         self.root.resizable(False, False)
 
@@ -227,7 +226,6 @@ class ProfilePage:
         with open(f"{self.profile_name}_habits.pkl", "wb") as file:
             pickle.dump(self.habits, file)
 
-
 class AddHabitsPage(BasePage):
     def __init__(self, root, profile_name, profile_page):
         super().__init__(root, "Add Habits", "700x400")
@@ -283,20 +281,54 @@ class AddHabitsPage(BasePage):
         )
         timer_checkbox.place(relx=0.5, rely=0.5, anchor=tk.CENTER)
 
-        self.timer_entry = ttk.Entry(self.root, state=tk.DISABLED, width=10)
-        self.timer_entry.place(relx=0.5, rely=0.55, anchor=tk.CENTER)
+        # Set up time picker widgets, initially hidden
+        self.time_picker_label = tk.Label(
+            self.root,
+            text="Select Time:",
+            font=("Arial", 14),
+            background="white",
+        )
+        self.time_picker_label.place(relx=0.5, rely=0.7, anchor=tk.CENTER)
+
+        self.minute_var = tk.StringVar(value=0)
+        self.second_var = tk.StringVar(value=0)
+
+        self.minute_label = tk.Label(self.root, text="Minutes:")
+        self.minute_spinner = tk.Spinbox(
+            self.root, from_=0, to=59, textvariable=self.minute_var
+        )
+        self.second_label = tk.Label(self.root, text="Seconds:")
+        self.second_spinner = tk.Spinbox(
+            self.root, from_=0, to=59, textvariable=self.second_var
+        )
+
+        # Initially hide time picker widgets
+        self.hide_time_picker()
 
         self.btn_add_habit = tk.Button(
             self.root, text="Add Habit", width=15, command=self.add_habit
         )
-        self.btn_add_habit.place(relx=0.5, rely=0.6, anchor=tk.CENTER)
+        self.btn_add_habit.place(relx=0.5, rely=0.85, anchor=tk.CENTER)
 
     def toggle_timer_entry(self):
         if self.timer_var.get() == 1:
-            self.timer_entry.config(state=tk.NORMAL)
+            self.show_time_picker()
         else:
-            self.timer_entry.delete(0, tk.END)
-            self.timer_entry.config(state=tk.DISABLED)
+            self.hide_time_picker()
+
+    def show_time_picker(self):
+        self.time_picker_label.place(relx=0.5, rely=0.7, anchor=tk.CENTER)
+        self.minute_label.place(relx=0.4, rely=0.75, anchor=tk.CENTER)
+        self.minute_spinner.place(relx=0.5, rely=0.75, anchor=tk.CENTER)
+        self.second_label.place(relx=0.6, rely=0.75, anchor=tk.CENTER)
+        self.second_spinner.place(relx=0.7, rely=0.75, anchor=tk.CENTER)
+
+    def hide_time_picker(self):
+        self.time_picker_label.place_forget()
+        self.minute_label.place_forget()
+        self.minute_spinner.place_forget()
+        self.second_label.place_forget()
+        self.second_spinner.place_forget()
 
     def return_to_profile_page(self):
         self.destroy()
@@ -306,7 +338,8 @@ class AddHabitsPage(BasePage):
         habit_text = self.habit_entry.get()
         habit_type = self.habit_type.get()
         enable_timer = self.timer_var.get()
-        timer_value = self.timer_entry.get()
+        timer_minutes = int(self.minute_var.get())
+        timer_seconds = int(self.second_var.get())
 
         if habit_text and habit_type:
             self.habit_entry.delete(0, "end")
@@ -316,12 +349,10 @@ class AddHabitsPage(BasePage):
                 habit_text_to_save += " (Unwanted)"
 
             if enable_timer:
-                if timer_value.isdigit() and int(timer_value) > 0:
-                    habit_text_to_save += f" (Timer Enabled: {timer_value} min)"
+                if timer_minutes > 0 or timer_seconds > 0:
+                    habit_text_to_save += f" (Timer: {timer_minutes} min {timer_seconds} sec)"
                 else:
-                    messagebox.showwarning(
-                        "Warning", "Please enter a valid timer value."
-                    )
+                    messagebox.showwarning("Warning", "Please enter a valid timer value.")
                     return
 
             self.profile_page.habits.append(habit_text_to_save)
@@ -329,8 +360,7 @@ class AddHabitsPage(BasePage):
             self.profile_page.display_habits()
             self.destroy()
         else:
-            messagebox.showwarning("Warning", "Please enter a habit and select a type.")
-
+            messagebox.showwarning("Warning", "Please enter a habit and select a type")
 
 if __name__ == "__main__":
     root = tk.Tk()
