@@ -143,6 +143,7 @@ class ProfilePage:
         )
         self.btn_add_habits.place(relx=0.5, rely=0.3, anchor=tk.CENTER)
 
+        # Display habits using buttons
         self.display_habits()
 
     def return_to_profile_selection(self):
@@ -159,10 +160,17 @@ class ProfilePage:
         habits_label.place(x=50, y=100)
 
         for i, habit in enumerate(self.habits):
-            habit_label = tk.Label(
-                self.root, text=f"{i + 1}. {habit}", font=("Arial", 12)
+            habit_btn = tk.Button(
+                self.root,
+                text=f"{i + 1}. {habit}",
+                font=("Arial", 12),
+                command=lambda h=habit: self.handle_habit_button(h),
             )
-            habit_label.place(x=100, y=140 + i * 30)
+            habit_btn.place(x=100, y=140 + i * 30)
+
+    def handle_habit_button(self, habit):
+        # You can implement any behavior you want when a habit button is clicked
+        messagebox.showinfo("Habit Clicked", f"You clicked habit: {habit}")
 
     def load_habits(self):
         try:
