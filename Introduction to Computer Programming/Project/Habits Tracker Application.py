@@ -33,6 +33,7 @@ class ProfileSelectionPage:
         self.root.geometry("400x700")
         self.root.resizable(False, False)
 
+        # UI elements
         self.select_profile_label = tk.Label(
             self.root,
             text="Select a Profile",
@@ -141,6 +142,7 @@ class ProfilePage:
         self.root.geometry("700x400")
         self.root.resizable(False, False)
 
+        # UI elements
         self.label = tk.Label(
             self.root,
             text=f"Profile: {self.profile_name}",
@@ -226,6 +228,7 @@ class ProfilePage:
         with open(f"{self.profile_name}_habits.pkl", "wb") as file:
             pickle.dump(self.habits, file)
 
+
 class AddHabitsPage(BasePage):
     def __init__(self, root, profile_name, profile_page):
         super().__init__(root, "Add Habits", "700x400")
@@ -234,6 +237,7 @@ class AddHabitsPage(BasePage):
         self.setup_add_habits_page()
 
     def setup_add_habits_page(self):
+        # UI elements
         self.label = tk.Label(
             self.root,
             text=f"Add Habits",
@@ -342,7 +346,7 @@ class AddHabitsPage(BasePage):
         timer_seconds = int(self.second_var.get())
 
         if habit_text and habit_type:
-            self.habit_entry.delete(0, "end")
+            self.habit_entry.delete(0, "end")\
 
             habit_text_to_save = habit_text
             if habit_type == "unwanted":
@@ -361,6 +365,7 @@ class AddHabitsPage(BasePage):
             self.destroy()
         else:
             messagebox.showwarning("Warning", "Please enter a habit and select a type")
+
 
 if __name__ == "__main__":
     root = tk.Tk()
