@@ -1,14 +1,11 @@
 # SE-15 University Courses Repository
 
-This repository contains code and materials from the SE-15 (Software Engineering 15) courses during my university studies.
+This repository contains code and materials from SE15 (Software Engineering 15) courses during my university studies.
 
 ## Table of Contents
 
 - [Courses](#courses)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
-
+  
 ## Courses
 
 List the courses that are included in this repository. You can provide a brief description of each course.
