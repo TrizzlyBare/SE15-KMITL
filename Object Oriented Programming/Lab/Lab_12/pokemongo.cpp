@@ -196,7 +196,7 @@ public:
             int numToAdd = std::min(static_cast<size_t>(MAX_POKEBALLS - pokeballs.size()), static_cast<size_t>(5));
             for (int i = 0; i < numToAdd; ++i)
             {
-                int randomType = rand() % 3; // 0: Normal, 1: Strong, 2: Ultra
+                int randomType = rand() % 3; 
                 string pokeballType;
                 int efficiency;
 
@@ -206,10 +206,12 @@ public:
                     pokeballType = "Normal";
                     efficiency = 1;
                     break;
+
                 case 1:
                     pokeballType = "Strong";
                     efficiency = 2;
                     break;
+
                 case 2:
                     pokeballType = "Ultra";
                     efficiency = 3;

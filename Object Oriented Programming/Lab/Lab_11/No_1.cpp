@@ -18,9 +18,7 @@ struct Reservation
     int number = 0;
 
     Reservation(std::string name = "", std::string title = "", int d = 0, int r = 0, int num = 0)
-        : customerName(name), movieTitle(title), date(d), round(r), number(num)
-    {
-    }
+        : customerName(name), movieTitle(title), date(d), round(r), number(num) {}
 };
 
 void displaySchedule(const std::vector<Movie> &movieVec)
