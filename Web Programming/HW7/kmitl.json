@@ -1,0 +1,35 @@
+{
+  "student_name": "Mr. Name ForExample",
+  "date_of_birth": "January 8th 2003",
+  "student_id": "6501XXXX",
+  "date_of_admission": "2022",
+  "date_of_graduation": "N/A",
+  "degree": "Bachelor of Engineering",
+  "major": "Software Engineering",
+  "credit": {
+    "Year, 2022-2023": {
+      "1st Semester": [
+        {
+          "name": "Introduction to Calculus",
+          "subject_id": "01006710",
+          "credit": 3,
+          "grade": "A"
+        },
+        {
+          "name": "Circuits and Electronics",
+          "subject_id": "01286111",
+          "credit": "4",
+          "grade": "B+"
+        }
+      ],
+      "2nd Semester": [
+        {
+          "name": "Differential Equations",
+          "subject_id": "01006717",
+          "credit": "3",
+          "grade": "A"
+        }
+      ]
+    }
+  }
+}

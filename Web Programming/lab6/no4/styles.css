@@ -1,0 +1,18 @@
+.calendar {
+  width: 100%;
+  max-width: 600px;
+  margin: auto;
+  text-align: center;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border: 1px solid #000;
+  padding: 10px;
+  text-align: center;
+}

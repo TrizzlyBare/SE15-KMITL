@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Todo</h1>
+    <h2><a href="/home">Back</a></h2>
+    <table>
+        <tr>
+            <td> {{content.title}} </td>
+        </tr>
+        <tr>
+            <td> {{content.body}} </td>
+        </tr>
+    </table>
+    <input type="hidden" id="todoId" value="{{content.id}}">
+    <button onclick="deleteTodo()">Delete</button>
+
+    <script>
+        async function deleteTodo() {
+            const id = document.getElementById('todoId').value;
+            const response = await fetch(`/delete/${id}`, {
+                method: 'DELETE'
+            });
+            window.location.href = "/home";
+        }
+    </script>
+</body>
+
+</html>

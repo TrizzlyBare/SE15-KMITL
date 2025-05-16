@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Poppins:wght@400;700&family=Roboto+Mono:ital@0;1&display=swap"
+        rel="stylesheet">
+
+    <style>
+        h2 {
+            font-family: "Poppins", sans-serif;
+            font-weight: 700;
+            font-style: normal;
+            font-size: 20px;
+        }
+
+        h3 {
+            font-family: "Poppins", sans-serif;
+            font-weight: 700;
+            font-style: normal;
+            font-size: 18px;
+        }
+
+        li {
+            font-family: "Poppins", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+            font-size: 16px;
+        }
+
+        #right {
+            font-family: "Poppins", sans-serif;
+        }
+
+        #container {
+            width: 794px;
+            height: 490mm;
+            border: 1px solid #000;
+            margin: 20px auto;
+            background-color: #fff;
+
+            display: flex;
+        }
+
+        #left {
+            width: 40%;
+            height: 100%;
+            background-color: lightblue;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #left #pro img {
+            border-radius: 50%;
+            width: 200px;
+            height: 200px;
+            margin-top: 40px;
+        }
+
+        #left hr {
+            width: 250px;
+            color: rgb(45, 43, 43);
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        #left #name {
+            text-align: center;
+        }
+
+        #left #profile img {
+            width: 25px;
+            height: 25px;
+            margin-right: 10px;
+        }
+
+        #left #profile #content {
+            margin-top: 20px;
+        }
+
+        #profile h3,
+        #hobbies h3,
+        #skills h3,
+        #languages h3 {
+            text-align: center;
+        }
+
+        ul.dash {
+            list-style-type: none;
+        }
+
+        ul.dash>li {
+            text-indent: -20px;
+        }
+
+        ul.dash>li:before {
+            content: "-";
+            text-indent: -20px;
+        }
+
+        #right {
+            width: 60%;
+            height: 100%;
+            background-color: #fbfcf8;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #intro {
+            margin-left: 30px;
+            margin-right: 30px;
+            margin-top: 40px;
+        }
+
+        #right hr {
+            margin-left: auto;
+            margin-right: auto;
+            width: 410px;
+            color: rgb(45, 43, 43);
+        }
+
+        #education h3,
+        #experience h3 {
+            margin-left: 30px;
+        }
+
+        .held {
+            display: flex;
+            flex-direction: row;
+
+            margin-left: 30px;
+            margin-right: 30px;
+        }
+
+        .description {
+            margin-left: 30px;
+            margin-top: 0;
+        }
+
+        .description h4 {
+            margin-bottom: 5px;
+        }
+
+        .description p {
+            margin-top: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <div id="left">
+            <div id="pro">
+                <img src="img/Cartoon Character Profile.avif">
+            </div>
+            <div id="name">
+                <h2>NAME AND <br>SURNAME</h2>
+                <hr size="3" color="black">
+                <p>JOB</p>
+            </div>
+
+            <div id="profile">
+                <h3>PROFILE</h3>
+                <hr size="3" color="black">
+                <div class="content">
+                    <img src="https://icons.iconarchive.com/icons/steve/zondicons/512/Location-icon.png">
+                    Personal Address
+
+                    <br>
+
+                    <img
+                        src="https://static.vecteezy.com/system/resources/previews/020/009/614/non_2x/email-and-mail-icon-black-free-png.png">
+                    example@gmail.com
+
+                    <br>
+
+                    <img src="https://www.freeiconspng.com/thumbs/phone-icon/office-phone-icon--25.png">
+                    06 01 02 03 04
+
+                    <br>
+
+                    <img
+                        src="https://www.freeiconspng.com/thumbs/calendar-icon-png/calendar-date-event-month-icon--19.png">
+                    24/05/1995
+
+                    <br>
+
+                    <img src="https://www.freeiconspng.com/thumbs/car-icon-png/car-icon-png-25.png">
+                    B
+                    <br>
+                </div>
+            </div>
+
+            <div id="skills">
+                <h3>SKILLS</h3>
+                <hr size="3" color="black">
+                <ul class="dash">
+                    <li> Skill 1</li>
+                    <li> Skill 2</li>
+                    <li> Skill 3</li>
+                    <li> Skill 4</li>
+                    <li> Skill 5</li>
+                </ul>
+            </div>
+
+            <div id="languages">
+                <h3>LANGUAGES</h3>
+                <hr size="3" color="black">
+                <ul class="dash">
+                    <li> Language 1</li>
+                    <li> Language 2</li>
+                </ul>
+            </div>
+
+            <div id="hobbies">
+                <h3>HOBBIES</h3>
+                <hr size="3" color="black">
+                <ul class="dash">
+                    <li> Hobby 1</li>
+                    <li> Hobby 2</li>
+                    <li> Hobby 3</li>
+                    <li> Hobby 4</li>
+                    <li> Hobby 5</li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="right">
+            <p id="intro">Lorem ipsum odor amet, consectetuer adipiscing elit. Quis sollicitudin iaculis dis consequat
+                auctor,
+                arcu consequat lobortis. Velit sollicitudin gravida; dictum turpis habitant a adipiscing. Eget
+                sodales nullam neque feugiat vitae.</p>
+
+            <div id="experience">
+                <h3>PROFESSIONAL EXPERIENCE</h3>
+                <hr size="3" color="black">
+                <div class="company">
+                    <div class="held">
+                        <p>Position Held <br>Company</p>
+                        <div class="description">
+                            <h4>2020 - 2022</h4>
+                            <p>Auctor ex rhoncus senectus posuere phasellus sed per sem. Sagittis lectus per auctor
+                                dolor facilisis. Purus dis auctor curae arcu maximus nam. Auctor porta sollicitudin
+                                penatibus commodo dolor consectetur quis.</p>
+                        </div>
+                    </div>
+                    <div class="held">
+                        <p>Position Held <br>Company</p>
+                        <div class="description">
+                            <h4>2015 - 2020</h4>
+                            <p>Auctor ex rhoncus senectus posuere phasellus sed per sem. Sagittis lectus per auctor
+                                dolor facilisis. Purus dis auctor curae arcu maximus nam. Auctor porta sollicitudin
+                                penatibus commodo dolor consectetur quis.</p>
+                        </div>
+                    </div>
+                    <div class="held">
+                        <p>Position Held <br>Company</p>
+                        <div class="description">
+                            <h4>2010 - 2015</h4>
+                            <p>Auctor ex rhoncus senectus posuere phasellus sed per sem. Sagittis lectus per auctor
+                                dolor facilisis. Purus dis auctor curae arcu maximus nam. Auctor porta sollicitudin
+                                penatibus commodo dolor consectetur quis.</p>
+                        </div>
+                    </div>
+                    <div class="held">
+                        <p>Position Held <br>Company</p>
+                        <div class="description">
+                            <h4>2009 - 2010</h4>
+                            <p>Auctor ex rhoncus senectus posuere phasellus sed per sem. Sagittis lectus per auctor
+                                dolor facilisis. Purus dis auctor curae arcu maximus nam. Auctor porta sollicitudin
+                                penatibus commodo dolor consectetur quis.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="education">
+                <h3>EDUCATION</h3>
+                <hr size="3" color="black">
+                <div class="held">
+                    <p>2005 <br> 2008</p>
+                    <div class="description">
+                        <h4>DEGREE</h4>
+                        <p>Auctor ex rhoncus senectus posuere phasellus sed per sem. Sagittis lectus per auctor
+                            dolor facilisis. Purus dis auctor curae arcu maximus nam. Auctor porta sollicitudin
+                            penatibus commodo dolor consectetur quis.</p>
+                    </div>
+                </div>
+                <div class="held">
+                    <p>2020 <br> 2005</p>
+                    <div class="description">
+                        <h4>DEGREE</h4>
+                        <p>Auctor ex rhoncus senectus posuere phasellus sed per sem. Sagittis lectus per auctor
+                            dolor facilisis. Purus dis auctor curae arcu maximus nam. Auctor porta sollicitudin
+                            penatibus commodo dolor consectetur quis.</p>
+                    </div>
+                </div>
+                <div class="held">
+                    <p>2000 <br> 2002</p>
+                    <div class="description">
+                        <h4>DEGREE</h4>
+                        <p>Auctor ex rhoncus senectus posuere phasellus sed per sem. Sagittis lectus per auctor
+                            dolor facilisis. Purus dis auctor curae arcu maximus nam. Auctor porta sollicitudin
+                            penatibus commodo dolor consectetur quis.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+</body>
+
+</html>

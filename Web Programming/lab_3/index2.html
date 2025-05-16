@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="Lab.js"></script>
+</head>
+
+<body>
+    <form>
+        <div id="left">
+            <img src="Profile Picture.jpg" width="265" alt="Profile Picture">
+            <br>
+            <div>
+                <hr>
+                <h3>Profile:</h3>
+                <input type="text" name="profile" id="profile">
+            </div>
+            <div>
+                <h3>Address:</h3>
+                <hr>
+                <input type="text" name="address">
+            </div>
+            <div>
+                <input type="text" id="street" placeholder="Maple Street">
+            </div>
+            <div>
+                <input type="text" id="city" placeholder="California">
+            </div>
+            <div>
+                <select id="country">
+                    <option value="default">Select a Country</option>
+                </select>
+            </div>
+            <br>
+            <div>
+                <h3>Contacts</h3>
+                <hr>
+                <h3>Reference:</h3>
+                <input type="text" id="ref">
+
+                <h3>Favorite Colour:</h3>
+                <br>
+                <br>
+                <input type="color" id="favColour">
+            </div>
+        </div>
+
+        <div id="right">
+            <div>
+                <strong>Personal Information:</strong>
+                <hr>
+            </div>
+            <div>
+                <label for="name">Name:</label><br>
+                <input type="text" id="name" placeholder="John Doe">
+            </div>
+            <div>
+                <label for="age">Age:</label><br>
+                <input type="range" id="age">
+            </div>
+            <div>
+                <label for="email">Email:</label><br>
+                <input type="email" id="email" placeholder="myEmail@gmail.com">
+            </div>
+            <div>
+                <label for="phone">Phone:</label><br>
+                <input type="tel" id="phone" placeholder="092-345-6789">
+            </div>
+            <div>
+                <h3>Education</h3>
+                <hr>
+                <h3>University:</h3>
+                <input type="text" id="university" placeholder="KMITL">
+                <h3>Degree:</h3>
+                <input type="text" id="degree" placeholder="Software Engineering">
+                <h3>Years of Graduation:</h3>
+                <input type="date" id="graduationYear">
+            </div>
+            <div>
+                <h3>Skills & Experience:</h3>
+                <hr>
+                <h3>Skills</h3>
+                <input type="text" id="skills">
+                <h3>Experience</h3>
+                <input type="text" id="experience">
+            </div>
+            <input type="submit" onclick="displayResume()">
+        </div>
+    </form>
+</body>
+
+</html>

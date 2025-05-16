@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="cal_styles.css">
+</head>
+
+<body>
+    <table id="myTable">
+        <tr>
+            <td colspan="4" style="text-align: right;">
+                <label id="result">0</label>
+            </td>
+        </tr>
+        <tr>
+            <td id="Backspace">
+                < </td>
+            <td id="/">/</td>
+            <td id="*">*</td>
+            <td id="-" style="font-family: 'Courier New', Courier, monospace; font-weight:bold;">-</td>
+        </tr>
+        <tr>
+            <td id="7">7</td>
+            <td id="8">8</td>
+            <td id="9">9</td>
+            <td id="+" rowspan="2">+</td>
+        </tr>
+        <tr>
+            <td id="4">4</td>
+            <td id="5">5</td>
+            <td id="6">6</td>
+        </tr>
+        <tr>
+            <td id="1">1</td>
+            <td id="2">2</td>
+            <td id="3">3</td>
+            <td id="Enter" rowspan="2">=</td>
+        </tr>
+        <tr>
+            <td id="0" colspan="2">0</td>
+            <td id="c" style="font-weight: bold;">C</td>
+        </tr>
+    </table>
+
+    <script src="cal_script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('form');
+            const numberInput = document.getElementById('number');
+            const result = document.getElementById('result');
+
+            form.addEventListener('submit', function (event) {
+                event.preventDefault();
+
+                const number = parseInt(numberInput.value);
+
+                if (number % 2 === 0) {
+                    result.textContent = `${number} is an even number`;
+                } else {
+                    result.textContent = `${number} is an odd number`;
+                }
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <h1>Check Even and Odd number</h1>
+
+    <p id="result"></p>
+
+    <form id="form">
+        <label for="number">Number:</label>
+        <input type="number" id="number" name="number">
+        <button id="check">Check</button>
+    </form>
+</body>
+
+</html>

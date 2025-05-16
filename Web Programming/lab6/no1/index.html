@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            margin-top: 20px;
+        }
+
+        thead {
+            background-color: orange;
+        }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const shoppingList = document.getElementById('shoppingList');
+            const addItemButton = document.getElementById('addItem');
+            const resetListButton = document.getElementById('resetList');
+            const clearinputButton = document.getElementById('clearinput');
+
+            addItemButton.addEventListener('click', function (event) {
+                event.preventDefault();
+
+                const itemName = document.getElementById('itemName').value;
+                const amount = document.getElementById('amount').value;
+                const price = document.getElementById('price').value;
+
+                const tr = document.createElement('tr');
+                const tdItemName = document.createElement('td');
+                const tdAmount = document.createElement('td');
+                const tdPrice = document.createElement('td');
+
+                tdItemName.textContent = itemName;
+                tdAmount.textContent = amount;
+                tdPrice.textContent = price;
+
+                tr.appendChild(tdItemName);
+                tr.appendChild(tdAmount);
+                tr.appendChild(tdPrice);
+
+                shoppingList.appendChild(tr);
+            });
+
+            resetListButton.addEventListener('click', function () {
+                shoppingList.innerHTML = '';
+            });
+
+            clearinputButton.addEventListener('click', function () {
+                document.getElementById('itemName').value = '';
+                document.getElementById('amount').value = '';
+                document.getElementById('price').value = '';
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <h1>Shopping List</h1>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Item Name</th>
+                <th>Amount</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody id="shoppingList"></tbody>
+    </table>
+
+    <button id="resetList">Reset List</button>
+
+    <h2>Add Item</h2>
+    <form>
+        <label>
+            Item Name:
+            <input type="text" id="itemName" />
+        </label>
+
+        <br>
+
+        <label>
+            Amount:
+            <input type="number" id="amount" />
+        </label>
+
+        <br>
+
+        <label>
+            Price:
+            <input type="number" id="price" />
+        </label>
+
+        <br>
+
+        <button id="addItem">Add Item</button>
+        <button id="clearinput">Clear</button>
+
+    </form>
+</body>
+
+</html>

@@ -1,0 +1,17 @@
+.exchangeheader {
+  background-color: #800080;
+  color: white;
+}
+
+.evenrow {
+  background-color: #d8bfd8;
+}
+
+table {
+  font-family: "Candara";
+  text-align: center;
+}
+
+.hover:hover {
+  color: #ff0000;
+}

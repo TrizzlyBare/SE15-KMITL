@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <h1>Online Timer</h1>
+    <h3>Current Time (1000x faster) : <p id="displayCurrentTime"></p>
+    </h3>
+    <table id="alertTable">
+        <tr>
+            <th>Time</th>
+            <th>Alert</th>
+            <th>Actions</th>
+        </tr>
+        <tr>
+            <td><span class="alertTime">09.00</span><input type="text" value="09.00" class="alertTimeInput"
+                    style="display:none;"></td>
+            <td><span class="alertMessage">Wake up</span><input type="text" value="Wake up" class="alertMessageInput"
+                    style="display:none;"></td>
+            <td><button class="removeButton" onclick="removeRow(this)" style="display:none;">Remove</button></td>
+        </tr>
+        <tr>
+            <td><span class="alertTime">11.05</span><input type="text" value="11.05" class="alertTimeInput"
+                    style="display:none;"></td>
+            <td><span class="alertMessage">Lunch time</span><input type="text" value="Lunch time"
+                    class="alertMessageInput" style="display:none;"></td>
+            <td><button class="removeButton" onclick="removeRow(this)" style="display:none;">Remove</button></td>
+        </tr>
+        <tr>
+            <td><span class="alertTime">15.30</span><input type="text" value="15.30" class="alertTimeInput"
+                    style="display:none;"></td>
+            <td><span class="alertMessage">Take a break</span><input type="text" value="Take a break"
+                    class="alertMessageInput" style="display:none;"></td>
+            <td><button class="removeButton" onclick="removeRow(this)" style="display:none;">Remove</button></td>
+        </tr>
+    </table>
+    <button id="editButton" onclick="toggleEdit()">Edit</button>
+    <button id="addRowButton" onclick="addRow()" style="display:none;">Add Row</button>
+    <script src="script.js"></script>
+</body>
+
+</html>
+
+</html>

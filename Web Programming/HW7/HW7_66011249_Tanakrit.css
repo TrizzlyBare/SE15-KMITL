@@ -1,0 +1,106 @@
+h2,
+h3,
+h4 {
+  text-align: center;
+}
+
+#container {
+  width: 794px;
+  height: 297mm;
+  border: 1px solid #000;
+  margin: 20px auto;
+  padding: 20mm;
+  background-color: #fff;
+}
+#photo-container {
+  display: flex;
+  justify-content: center;
+  width: 100px;
+  height: 120px;
+  border: 1px solid black;
+  margin: 0 auto;
+  float: right;
+}
+
+#photo-box {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+#student-info form {
+  margin-top: 60px;
+  display: flex;
+}
+
+#right {
+  margin-top: 40px;
+}
+
+table {
+  margin-top: 40px;
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid black;
+  font-family: Arial, sans-serif;
+}
+
+table th {
+  border: 1px solid black;
+  text-align: center;
+  background-color: #f2f2f2;
+  padding: 8px;
+}
+
+table td {
+  border-right: 1px solid black;
+  text-align: center;
+  padding: 8px;
+}
+
+table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+table tr:nth-child(odd) {
+  background-color: #ffffff;
+}
+
+input[type="text"] {
+  text-align: center;
+}
+
+.credit,
+.grade {
+  width: 8%;
+}
+
+input[type="submit"] {
+  margin-top: 20px;
+  width: 120px;
+  height: 40px;
+  font-size: 20px;
+  float: right;
+}
+
+.semester-header {
+  font-weight: bold;
+  background-color: #d9d9d9;
+  text-align: center;
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+  padding: 8px;
+}
+
+.summary-row {
+  font-weight: bold;
+  background-color: #e0e0e0;
+  text-align: center;
+  padding: 8px;
+  border-top: 2px solid black;
+}
+
+#uploadButton {
+  margin-top: 40px;
+}

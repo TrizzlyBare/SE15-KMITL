@@ -1,0 +1,35 @@
+{
+  "Header": ["Number", "Item", "Quantity", "Price", "Amount"],
+
+  "Body": [
+    {
+      "col1": "1",
+      "col2": "Item 1",
+      "col3": "1",
+      "col4": "100",
+      "col5": "100"
+    },
+    {
+      "col1": "2",
+      "col2": "Item 2",
+      "col3": "2",
+      "col4": "200",
+      "col5": "400"
+    },
+    {
+      "col1": "3",
+      "col2": "Item 3",
+      "col3": "3",
+      "col4": "300",
+      "col5": "900"
+    },
+    {
+      "col1": "4",
+      "col2": "Item 4",
+      "col3": "4",
+      "col4": "400",
+      "col5": "1600"
+    }
+  ],
+  "Footer": [{ "value": "Total", "colspan": 4 }, { "value": "3000" }]
+}

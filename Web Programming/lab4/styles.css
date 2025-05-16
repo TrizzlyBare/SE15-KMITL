@@ -1,0 +1,79 @@
+form {
+  display: flex;
+  justify-content: center;
+}
+
+#left {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: serif;
+  background-color: #91c6ae;
+}
+
+#right {
+  margin-left: 60px;
+}
+
+#right div {
+  margin-bottom: 20px;
+}
+
+td {
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="range"],
+input[type="email"],
+input[type="tel"],
+input[type="date"] {
+  width: 500px;
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+select {
+  width: 510px;
+}
+
+#profile,
+#ref,
+#skills,
+#experience {
+  width: 500px;
+  height: 100px;
+}
+
+input[type="submit"] {
+  width: 200px;
+  height: 50px;
+  font-size: 20px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+img {
+  border: 10px solid #506c57;
+  border-radius: 50%;
+}
+
+.needinfo {
+  font-size: 25px;
+  background-color: #b7c7d1;
+  font-family: sans-serif;
+}
+
+.ed {
+  background-color: #8ba6b5;
+  font-family: sans-serif;
+}
+
+.skl {
+  background-color: #b7c7d1;
+  font-family: sans-serif;
+}
